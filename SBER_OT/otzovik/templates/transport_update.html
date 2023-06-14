@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>Изменение транспортного средства</title>
+</head>
+<body>
+<form  method="post">
+          {% csrf_token %}
+          <div class="form-error">{{form.non_field_errors}}</div>
+
+          {% for f in form %}
+          <p>
+            <label for="{{f.id_for_label}}" class="form-label">{{f.label}}:</label>
+            {{f}}
+          </p>
+          <div class="form-error">{{f.errors}}</div>
+          {% endfor %}
+
+          <button type="submit">Сохранить</button>
+        </form>
+</body>
+</html>

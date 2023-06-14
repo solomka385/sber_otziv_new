@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>Персонал</title>
+    {% load static %}
+  <link rel="stylesheet" href="{% static 'css/transport_style.css' %}">
+  </head>
+  <body>
+  <header>
+
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Личный кабинет</a></li>
+                <li><a href="{% url 'transport' %}">Транспорт</a></li>
+                <li class="active"><a href="{% url 'personal' %}">Персонал</a></li>
+                <li><a href="{% url 'support' %}">Поддержка</a></li>
+                  {% if user.is_authenticated %}
+
+                <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+                  {% else %}
+                <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+                  {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+      <h1>Персонал</h1>
+       <!--<div id="modal" class="modal">-->
+      <!--<div class="modal-content">-->
+        <!--<span class="close"></span>-->
+        <form action="{% url 'personal' %}" method="post">
+          {% csrf_token %}
+          <div class="form-error">{{form.non_field_errors}}</div>
+
+          {% for f in form %}
+          <p>
+            <label for="{{f.id_for_label}}" class="form-label">{{f.label}}:</label>
+            {{f}}
+          </p>
+          <div class="form-error">{{f.errors}}</div>
+          {% endfor %}
+
+          <button type="submit">Сохранить</button>
+        </form>
+      <!--</div>-->
+       <!--</div>-->
+
+      <table id="personnelTable">
+        <thead>
+          <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Должность</th>
+            <th>Дата рождения</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for personal in personal %}
+          <tr>
+            <td>{{personal.name}}</td>
+            <td>{{personal.last_name}}</td>
+            <td>{{personal.job}}</td>
+            <td>{{personal.date_of_dirth}}</td>
+            <td>{{personal.phone}}</td>
+            <td>{{personal.email}}</td>
+             <td><a href="{%url 'personal-update' personal.id%}" >Изменить запись</a></td>
+             <td><a href="{%url 'personal-delete' personal.id%}" >Удалить запись</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </main>
+</body>
+</html>
+
+<!--          <label for="firstName">Имя:</label>
+          <input type="text" class="firstName" name="firstName" placeholder="Имя" required>
+
+          <label for="lastName">Фамилия:</label>
+          <input type="text" class="lastName" name="lastName" placeholder="Фамилия" required>
+
+          <label for="position">Должность:</label>
+          <input type="text" class="position" name="position" placeholder="Должность" required>
+
+          <label for="birthDate">Дата рождения:</label>
+          <input type="date" class="birthDate" name="birthDate" placeholder="День рождения" required>
+
+          <label for="phone">Телефон:</label>
+          <input type="tel" class="phone" name="phone" placeholder="Телефон" required>
+
+          <label for="email">Email:</label>
+          <input type="email" class="email" name="email" placeholder="Email" required>-->
+
+
+    <!--<script src="{% static 'js/script2.js' %}"></script>-->
+

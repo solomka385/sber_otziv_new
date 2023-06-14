@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+    <style>
+        body {
+            background-color: #D1DCE3
+        }
+        .main .otsenka {
+            letter-spacing: 3px;
+            font-size: 30px;
+            color: #000;
+            margin-top:20px;
+            text-align: center;
+            text-shadow: -2px 4px 4px rgba(0,0,0, 0.25);
+
+        }
+        .rectangle1 {
+            position: absolute;
+            width: 90%;
+            height: 60px;
+            border-top: 3px solid #39A9E6;
+            border-left: 3px solid #39A9E6;
+            border-radius: 5px;
+            z-index: -1;
+            top: 15px;
+            left: 20px;
+            background-color: #fff;
+            box-shadow: -4px 4px 4px rgba(0,0,0, 0.25);
+        }
+        .rectangle2 {
+            position: absolute;
+            width: 100%;
+            height: 120px;
+            border-top: 3px solid #39A9E6;
+            border-left: 3px solid #39A9E6;
+            border-radius: 5px;
+            z-index: -1;
+            top: 100px;
+            background-color: #fff;
+            box-shadow: -4px 4px 4px rgba(0,0,0, 0.25);
+        }
+        .rectangle3 {
+            position: absolute;
+            width: 90%;
+            height: 80px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: -1;
+            top: 245px;
+            left: 5%;
+            background-color: #fff;
+            box-shadow: -4px 4px 4px rgba(0,0,0, 0.25);
+        }
+        .rectangle4 {
+            position: absolute;
+            width: 90%;
+            height: 80px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: -1;
+            top: 350px;
+            left: 5%;
+            background-color: #fff;
+            box-shadow: -4px 4px 4px rgba(0,0,0, 0.25);
+        }
+        .rectangle5 {
+            position: absolute;
+            width: 90%;
+            height: 80px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: -1;
+            top: 455px;
+            left: 5%;
+            background-color: #fff;
+            box-shadow: -4px 4px 4px rgba(0,0,0, 0.25);
+        }
+        .rectangle6 {
+            position: absolute;
+            width: 90%;
+            height: 80px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: -1;
+            top: 560px;
+            left: 5%;
+            background-color: #fff;
+            box-shadow: -4px 4px 4px rgba(0,0,0, 0.25);
+        }
+        .rectangle7 {
+            position: absolute;
+            width: 90%;
+            height: 80px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: -1;
+            top: 665px;
+            left: 5%;
+            background-color: #fff;
+            box-shadow: -4px 4px 4px rgba(0,0,0, 0.25);
+        }
+        .rectangle8 {
+            position: absolute;
+            width: 90%;
+            height: 80px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            z-index: -1;
+            top: 770px;
+            left: 5%;
+            background-color: #fff;
+            box-shadow: -4px 4px 4px rgba(0,0,0, 0.25);
+        }
+        .main .vazhno {
+            letter-spacing: 2px;
+            font-size: 18px;
+            margin-top: 50px;
+            margin-left: 20px;
+        }
+        .review-submit-btn {
+            position: absolute;
+            top: 865px;
+            right: 7.5%
+        }
+        .form-label1 {
+            left:40%;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+        .form-label2 {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+        .form-label3 {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+        .form-label4 {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+        .form-label5 {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+        .adding {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 55px;
+        }
+    </style>
+    <div class="main">
+        <p class="otsenka">Оценка транспорта</p>
+        <p class="vazhno">Ваше мнение очень важно для нас,<br /> поэтому просим оценить комфорт <br /> поездки в следующей форме.</p>
+    </div>
+
+    <div class="rectangle1"></div>
+    <div class="rectangle2"></div>
+    <div class="rectangle3"></div>
+    <div class="rectangle4"></div>
+    <div class="rectangle5"></div>
+    <div class="rectangle6"></div>
+    <div class="rectangle7"></div>
+    <div class="rectangle8"></div>
+    <form action="{% url 'anketa' %}" method="post">
+        {% csrf_token %}
+        <!--<p>Ниже url</p>-->
+        <!--<p>{{url}}</p>-->
+        <!--<p>Выше url</p>-->
+        <!--  {% for anketa in anketa %}
+           <p>{{anketa.user}}</p>
+          <label for="punctuality" class="review-label">{{anketa.number1}}:</label>
+          <select name="punctuality" id="punctuality" class="review-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select><br>
+
+          <label for="cleanliness" class="review-label">{{anketa.number2}}:</label>
+          <select name="cleanliness" id="cleanliness" class="review-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select><br>
+
+          <label for="technical_condition" class="review-label">{{anketa.number3}}:</label>
+          <select name="technical_condition" id="technical_condition" class="review-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select><br>
+
+          <label for="driver_behavior" class="review-label">{{anketa.number4}}:</label>
+          <select name="driver_behavior" id="driver_behavior" class="review-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select><br>
+
+          <label for="payment_system" class="review-label">{{anketa.number5}}:</label>
+          <select name="payment_system" id="payment_system" class="review-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select><br>
+
+        {%endfor%}-->
+        {% for f in form %}
+        <p>
+            {%if f.label == 'Number1'%}
+            {%for anketa in anketa%}
+            <label for="{{f.id_for_label}}" class="form-label1">{{anketa.number1}}:</label>
+            {{f}}
+        <p>{{anketa.dop1}}</p>
+            {%endfor%}
+            {%endif%}
+            {%if f.label == 'Number2'%}
+            {%for anketa in anketa%}
+            <label for="{{f.id_for_label}}" class="form-label2">{{anketa.number2}}:</label>
+            {{f}}
+        <p>{{anketa.dop2}}</p>
+            {%endfor%}
+            {%endif%}
+            {%if f.label == 'Number3'%}
+            {%for anketa in anketa%}
+            <label for="{{f.id_for_label}}" class="form-label3">{{anketa.number3}}:</label>
+            {{f}}
+        <p>{{anketa.dop3}}</p>
+            {%endfor%}
+            {%endif%}
+            {%if f.label == 'Number4'%}
+        <p>{{anketa.dop4}}</p>
+            {%for anketa in anketa%}
+            <label for="{{f.id_for_label}}" class="form-label4">{{anketa.number4}}:</label>
+            {{f}}
+            {%endfor%}
+            {%endif%}
+            {%if f.label == 'Number5'%}
+            {%for anketa in anketa%}
+            <label for="{{f.id_for_label}}" class="form-label5">{{anketa.number5}}:</label>
+            {{f}}
+        <p>{{anketa.dop5}}</p>
+            {%endfor%}
+            {%endif%}
+            <!--{%if f.label == 'Дата поездки'%}
+
+            <label for="{{f.id_for_label}}" class="form-label5">{{f.label}}:</label>
+            {{f}}
+            {%endif%}-->
+            {%if f.label == 'Отзыв'%}
+            <div class="form-error">{{form.non_field_errors}}</div>
+            <label class='adding'>Что вы бы хотели добавить?</label><br>
+
+            <label for="{{f.id_for_label}}" class="form-label">{{f.label}}:</label>
+            {{f}}
+            {%endif%}
+        </p>
+
+        <div class="form-error">{{f.errors}}</div>
+        {% endfor %}
+
+
+        <p>{{o.user}}{{o.text}}</p>
+
+
+        <input hidden class="otzov_by" name="otzov_by" value="{{ otzov_by }}">
+        <!-- остальные поля формы -->
+        <input hidden class="number" name="number" value="{{ number }}">
+
+
+
+
+
+        <input type="submit" value="Отправить" class="review-submit-btn">
+    </form>
+</body>
+
+</html>

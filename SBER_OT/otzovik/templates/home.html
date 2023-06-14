@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+     <title>Личный кабинет</title>
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'css/transport_style.css' %}">
+
+</head>
+<body>
+<header>
+      <nav>
+        <ul>
+          <li class="active"><a href="{% url 'home' %}">Личный кабинет</a></li>
+          <li><a href="{% url 'transport' %}">Транспорт</a></li>
+          <li><a href="{% url 'personal' %}">Персонал</a></li>
+          <li><a href="{% url 'support' %}">Поддержка</a></li>
+            {% if user.is_authenticated %}
+          <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+            {% else %}
+          <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+            {% endif %}
+        </ul>
+      </nav>
+    </header>
+{%if anketa%}
+<style>
+    form.form{
+    display:None}
+    .Data{
+    display:None}
+</style>
+{%endif%}
+{%if not anketa%}
+<style>
+    .update{
+    display:None}
+</style>
+{%endif%}
+<p class = 'Data'>Введите ваши критерии оценивания</p>
+ <form class = "form" action="{% url 'home' %}" method="post">
+          {% csrf_token %}
+          <div class="form-error">{{form.non_field_errors}}</div>
+
+          {% for f in form %}
+          <p>
+            <label for="{{f.id_for_label}}" class="form-label">{{f.label}}:</label>
+            {{f}}
+          </p>
+          <div class="form-error">{{f.errors}}</div>
+          {% endfor %}
+
+          <button type="submit">Сохранить</button>
+        </form>
+
+<table id="AnketaTable">
+
+       <!--<thead>
+
+          <tr>
+            <th>Критерий 1</th>
+            <th>Критерий 2</th>
+            <th>Критерий 3</th>
+            <th>Критерий 4</th>
+            <th>Критерий 5</th>
+
+          </tr>
+        </thead>
+        <tbody>-->
+          <!--{% for anketa in anketa %}
+          <tr>
+            <td>{{anketa.number1}}</td>
+            <td>{{anketa.number2}}</td>
+            <td>{{anketa.number3}}</td>
+            <td>{{anketa.number4}}</td>
+            <td>{{anketa.number5}}</td>
+              <td>
+  {% csrf_token %}
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>-->
+<table id="OprosTable">
+    <h2 class = 'update'>Ваша статистика </h2>
+        <thead>
+          <tr>
+              {% for anketa in anketa %}
+
+
+              <th>{{anketa.number1}}</th>
+            <th>{{anketa.number2}}</th>
+            <th>{{anketa.number3}}</th>
+            <th>{{anketa.number4}}</th>
+            <th>{{anketa.number5}}</th>
+            <th>Госномер</th>
+            <th>Дата</th>
+            <th>Отзыв</th>
+              <th><a href="{%url 'home-update' anketa.id%}" >Изменить критерий</a></th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+            {%for i in opros%}
+          <tr>
+            <td>{{i.number1}}</td>
+            <td>{{i.number2}}</td>
+            <td>{{i.number3}}</td>
+            <td>{{i.number4}}</td>
+            <td>{{i.number5}}</td>
+            <td>{{i.number}}</td>
+            <td>{{i.time}}</td>
+
+              <td>{{i.text}}</td>
+              <td><a href="{%url 'home-delete' i.id%}" >Удалить запись</a></td>
+          </tr>
+            {%endfor%}
+        </tbody>
+      </table>
+<form class = "2" action="{% url 'home' %}" method="post">
+  {% csrf_token %}
+
+  <select name="num" id="num">
+      <!--<label for="num">Выберите номер:</label>-->
+      <option value="" disabled selected>Выберите госномер</option>
+    {% for number in numbers %}
+        <option value="{{ number }}">{{ number }}</option>
+    {% endfor %}
+  </select>
+
+  <button type="submit">Статистика</button>
+</form>
+    <div>{{ dash|safe }}</div>
+</body>
+</html>
